@@ -14,15 +14,21 @@ const Chart = ({data:{confirmed,recovered,deaths}, country}) => {
         }
 
         fetchApi()
-        console.log('zdzsdzsdzsd', dailyData)
+        console.log("the dailydatiss", dailyData)
     }, [])
 
-    if(!confirmed) {
+
+
+    if(!confirmed ) {
         return <Loader/>
     }
 
+    // if(!dailyData && !country){
+    //     return <p>Currently not working! It is a problem with covid19.mathdro.id API</p>
+    // }
+
     const lineChart = (
-        dailyData.length ?
+         dailyData && dailyData.length  ?
             <Line data={{
                 labels: dailyData.map(({date}) => date),
                 datasets: [{
@@ -38,7 +44,7 @@ const Chart = ({data:{confirmed,recovered,deaths}, country}) => {
                     fill: true
                 }]
 
-            }}/> : null
+            }}/> : <p>Currently the global statistic is not working! It is a problem with covid19.mathdro.id API</p>
 
     )
 
@@ -53,6 +59,7 @@ const Chart = ({data:{confirmed,recovered,deaths}, country}) => {
                                           'rgba(0,255,0,0.5)',
                                           'rgba(255,0,0,0.5)',],
                         data:[confirmed.value,recovered.value,deaths.value]
+
                     }]
 
 

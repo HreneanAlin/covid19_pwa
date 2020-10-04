@@ -9,6 +9,7 @@ export const fetchData = async (country) => {
     }
     try {
         const {data: {confirmed, recovered, deaths, lastUpdate}} = await axios.get(changeableUrl)
+       // console.log("con",confirmed,"rec",recovered,"death",deaths,"lastUpdate",lastUpdate)
 
         if(!confirmed) return undefined
 
@@ -27,6 +28,7 @@ export const fetchData = async (country) => {
 export const fetchDailyData = async () => {
     try {
         const {data} = await axios.get(`${url}/daily`)
+        console.log("the daily data is",data)
         if(!data) return undefined
 
         return data.map((dailyData) => ({
